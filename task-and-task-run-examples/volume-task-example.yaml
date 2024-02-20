@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: volume-example
+spec:
+  volumes:
+    - name: shared-data
+      emptyDir: {}
+  steps:
+    - name: write-to-volume
+      image: alpine:3.14
+      script: |
+        #!/bin/sh
+        echo "Hello from Task step 1" > /workspace/shared/hello.txt
+      volumeMounts:
+        - name: shared-data
+          mountPath: /workspace/shared
+    - name: read-from-volume
+      image: alpine:3.14
+      script: |
+        #!/bin/sh
+        cat /workspace/shared/hello.txt
+      volumeMounts:
+        - name: shared-data
+          mountPath: /workspace/shared
