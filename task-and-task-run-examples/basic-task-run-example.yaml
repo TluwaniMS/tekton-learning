@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: task-greeter-run
+spec:
+  taskRef:
+    name: task-greeter
+  params:
+    - name: greeters-name
+      value: 'Thobela'
+    - name: territory
+      value: 'Maphungubwe'
