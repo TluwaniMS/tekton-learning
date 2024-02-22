@@ -50,3 +50,11 @@ kubectl apply -f ./task-and-task-run-examples/volume-task-example.yaml
 ```
 kubectl apply -f ./task-and-task-run-examples/volume-task-run-example.yaml
 ```
+
+## Tekton Pipeline:
+
+A Pipeline is a collection of Tasks organized in a sequence or parallel execution order. It provides a higher-level abstraction for defining the overall workflow of a CI/CD process.
+
+## Tekton PipelineRun:
+
+A PipelineRun is an instance of a Pipeline execution. It references the Pipeline and associated PipelineResources to trigger the execution of tasks and track the progress of the pipeline run.
