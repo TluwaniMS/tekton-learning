@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: user-greeter-pipeline-run
+spec:
+  pipelineRef:
+    name: user-greeter-pipeline
+  params:
+  - name: username-1
+    value: "Tekton"
+  - name: username-2
+    value: "Tekton"
