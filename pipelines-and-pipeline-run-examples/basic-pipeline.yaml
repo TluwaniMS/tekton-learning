@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: user-greeter-pipeline
+spec:
+  params:
+  - name: username-1
+    type: string
+  - name: username-2
+    type: string
+  tasks:
+    - name: greeter-1
+      taskRef:
+        name: user-greeter-1
+      params:
+      - name: username-1
+        value: $(params.username-1)
+    - name: greeter-2
+      taskRef:
+        name: user-greeter-2
+      params:
+      - name: username-2
+        value: $(params.username-2)
