@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: user-greeter-1
+spec:
+  params:
+  - name: username-1
+    type: string
+  steps:
+    - name: greet-user
+      image: ubuntu
+      script: |
+        #!/bin/bash
+        echo "Greetings $(params.username-1)! I'm sending this from the user-greeter-1 task."
+
+---
+
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: user-greeter-2
+spec:
+  params:
+  - name: username-2
+    type: string
+  steps:
+    - name: greet-user
+      image: ubuntu
+      script: |
+        #!/bin/bash
+        echo "Greetings $(params.username-2)! I'm sending this from the user-greeter-2 task."
