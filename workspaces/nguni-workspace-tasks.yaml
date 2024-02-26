@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: mtetwa-reign
+spec:
+  workspaces:
+    - name: nguni
+  steps:
+    - name: mtetwa-orders
+      image: busybox:stable
+      script: |
+        #!/bin/bash
+        echo "Greetings from the Great Unifier Godongwane!" > $(workspaces.nguni.path)/dingiswayo.txt
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: zulu-reign
+spec:
+  workspaces:
+    - name: nguni
+  steps:
+    - name: zulu-orders
+      image: busybox:stable
+      script: |
+        #!/bin/bash
+        echo "This is a greeting from our Alpha:"
+        cat $(workspaces.nguni.path)/dingiswayo.txt
+        echo "Sigidi shall master, preserve and protect!"

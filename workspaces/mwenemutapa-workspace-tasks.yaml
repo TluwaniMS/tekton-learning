@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: mutota-reign
+spec:
+  workspaces:
+    - name: mwenemutapa
+  steps:
+    - name: mutota-orders
+      image: busybox:stable
+      script: |
+        #!/bin/bash
+        echo "Greetings from the Great Alpha Nyatsimba Mutota!" > $(workspaces.mwenemutapa.path)/dzimbagwe.txt
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: dombo-reign
+spec:
+  workspaces:
+    - name: mwenemutapa
+  steps:
+    - name: dombo-orders
+      image: busybox:stable
+      script: |
+        #!/bin/bash
+        echo "This is a greeting from our Alpha:"
+        cat $(workspaces.mwenemutapa.path)/dzimbagwe.txt
+        echo "Changamire Dombo shall master, preserve and protect!"
