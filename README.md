@@ -58,3 +58,8 @@ A Pipeline is a collection of Tasks organized in a sequence or parallel executio
 ## Tekton PipelineRun:
 
 A PipelineRun is an instance of a Pipeline execution. It references the Pipeline and associated PipelineResources to trigger the execution of tasks and track the progress of the pipeline run.
+
+## Tekton Workspaces:
+
+A Tekton workspace typically refers to the directory or environment where Tekton pipelines are executed.
+In the context of Tekton pipelines, a workspace is a directory within the container where tasks and pipelines run.
