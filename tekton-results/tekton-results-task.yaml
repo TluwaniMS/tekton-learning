@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: arithmetic-result-calculator
+spec:
+  params:
+  - name: x
+    description: "The first number to be summed."
+  - name: y
+    description: "The second number to be summed."
+  results:
+  - name: summed-value
+    description: "The summed value of x and y."
+  steps:
+    - name: calculate-result
+      image: busybox:stable
+      script: |
+        #!/bin/sh
+        echo "Hello World"
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: arithmetic-result-printer
+spec:
+  steps:
+    - name: print-result
+      image: busybox:stable
+      script: |
+        #!/bin/sh
+        echo "Hello World"
