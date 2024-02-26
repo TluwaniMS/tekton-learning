@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: my-pipeline
+spec:
+  workspaces:
+    - name: mwenemutapa
+    - name: nguni
+  tasks:
+    - name: mutota-executor
+      taskRef:
+        name: mutota-reign
+    - name: mtetwa-executor
+      taskRef:
+        name: mtetwa-reign
+    - name: dombo-executor
+      taskRef:
+        name: dombo-reign
+      runAfter:
+        - mutota-executor
+    - name: zulu-executor
+      taskRef:
+        name: zulu-reign
+      runAfter:
+        - mtetwa-executor
