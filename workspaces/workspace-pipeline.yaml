@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: my-pipeline
+  name: dynastic-pipeline
 spec:
   workspaces:
     - name: mwenemutapa
