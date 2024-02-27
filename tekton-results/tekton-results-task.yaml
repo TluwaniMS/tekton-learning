@@ -16,7 +16,10 @@ spec:
       image: busybox:stable
       script: |
         #!/bin/sh
-        echo "Hello World"
+        result = $(( $(parameters.x) + $(parameters.y) ))
+        echo -n $result > $(results.summed-value.path)
+        echo "We are done calculating the sum of $x and $y"
+
 
 ---
 apiVersion: tekton.dev/v1beta1
