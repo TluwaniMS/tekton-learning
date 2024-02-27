@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: arithmetic-results
+spec:
+  params:
+    - name: x
+      type: number
+    - name: y
+      type: number
+  tasks:
+    - name: arithmetic-calculator
+      taskRef:
+        name: arithmetic-result-calculator
+      params:
+        - name: x
+          value: $(params.x)
+        - name: y
+          value: $(params.y)
+    - name: arithmetic-answer-echoer
+      taskRef:
+        name: arithmetic-result-printer
+      params:
+        - name: arithmetic-result
+          value: $(tasks.arithmetic-calculator.results.summed-value)
+        - name: x
+          value: $(params.x)
+        - name: y
+          value: $(params.y)
+      runAfter:
+        - arithmetic-calculator
