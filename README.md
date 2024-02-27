@@ -17,7 +17,7 @@ It represents the actual execution of a Task's steps, which are defined in the T
 
 `NB!`
 
-Please ensure that you have a [minikube instance installed](https://minikube.sigs.k8s.io/docs/start/)
+Please ensure that you have a [minikube instance installed](https://minikube.sigs.k8s.io/docs/start/) and [Tekton CLI](https://tekton.dev/docs/cli/) installed.
 
 #### Install Tekton Pipelines:
 
