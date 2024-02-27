@@ -6,7 +6,7 @@ spec:
   pipelineRef:
     name: user-greeter-pipeline
   params:
-  - name: username-1
-    value: "Tekton"
-  - name: username-2
-    value: "Tekton"
+    - name: username-1
+      value: 'Alpha'
+    - name: username-2
+      value: 'Omega'

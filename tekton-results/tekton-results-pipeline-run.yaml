@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: arithmetic-results-pipeline-run
+spec:
+  pipelineRef:
+    name: arithmetic-results-pipeline
+  params:
+    - name: x
+      value: 3
+    - name: y
+      value: 7
