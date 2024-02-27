@@ -2,3 +2,5 @@
 
 
 # This bash script is responsible for running and setting up all the components of the arithmetic-results-pipeline.
+
+echo "arithmetic-results-pipeline"
