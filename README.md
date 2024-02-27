@@ -13,44 +13,6 @@ A Task is a collection of Steps that you define and arrange in a specific or
 A TaskRun object instantiates and executes a Task.
 It represents the actual execution of a Task's steps, which are defined in the Task specification.
 
-## Basic Task and TaskRun Example(s):
-
-`NB!`
-
-Please ensure that you have a [minikube instance installed](https://minikube.sigs.k8s.io/docs/start/) and [Tekton CLI](https://tekton.dev/docs/cli/) installed.
-
-#### Install Tekton Pipelines:
-
-```
-kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
-```
-
-#### Applying the basic Task example:
-
-```
-kubectl apply -f ./task-and-task-run-examples/basic-task-example.yaml
-```
-
-#### Applying the basic TaskRun to execute the created task example:
-
-```
-kubectl apply -f ./task-and-task-run-examples/basic-task-run-example.yaml
-```
-
-## Basic Volume Task and TaskRun Example(s):
-
-#### Applying the basic Volume Task example:
-
-```
-kubectl apply -f ./task-and-task-run-examples/volume-task-example.yaml
-```
-
-#### Applying the basic TaskRun to execute the created Volume task example:
-
-```
-kubectl apply -f ./task-and-task-run-examples/volume-task-run-example.yaml
-```
-
 ## Tekton Pipeline:
 
 A Pipeline is a collection of Tasks organized in a sequence or parallel execution order. It provides a higher-level abstraction for defining the overall workflow of a CI/CD process.
@@ -63,3 +25,17 @@ A PipelineRun is an instance of a Pipeline execution. It references the Pipeline
 
 A Tekton workspace typically refers to the directory or environment where Tekton pipelines are executed.
 In the context of Tekton pipelines, a workspace is a directory within the container where tasks and pipelines run.
+
+## Basic Tekton Examples:
+
+`NB!`
+
+Please ensure that you have a [minikube instance installed](https://minikube.sigs.k8s.io/docs/start/) and [Tekton CLI](https://tekton.dev/docs/cli/) installed.
+
+#### Install Tekton Pipelines:
+
+```
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+```
+
+
