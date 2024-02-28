@@ -39,3 +39,32 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline
 ```
 
 
+## Basic task and taskRun examples:
+
+```
+./task-and-task-run-examples/basic-task-run-example.sh
+```
+
+## Basic volume, task and taskRun example:
+
+```
+./task-and-task-run-examples/volume-task-run-example.sh
+```
+
+## Basic pipeline examples:
+
+```
+./pipelines-and-pipeline-run-examples/pipeline-and-pipeline-run-examples-running-script.sh
+```
+
+## Basic workspace usage example(s):
+
+```
+./workspaces/workspace-example-running-script.sh
+```
+
+## Basic task results consumption example:
+
+```
+./tekton-results/tekton-results-example-running-script.sh
+```
