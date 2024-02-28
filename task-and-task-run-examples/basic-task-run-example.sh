@@ -5,4 +5,5 @@
 # Applying the required tasks:
 kubectl apply -f ./task-and-task-run-examples/basic-task-example.yaml
 
+# Applying tasRun:
 kubectl apply -f ./task-and-task-run-examples/basic-task-run-example.yaml

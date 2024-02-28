@@ -5,4 +5,5 @@
 # Applying the required tasks:
 kubectl apply -f ./task-and-task-run-examples/volume-task-example.yaml
 
+# Applying tasRun:
 kubectl apply -f ./task-and-task-run-examples/volume-task-run-example.yaml
