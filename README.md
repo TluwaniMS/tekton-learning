@@ -26,6 +26,32 @@ A PipelineRun is an instance of a Pipeline execution. It references the Pipeline
 A Tekton workspace typically refers to the directory or environment where Tekton pipelines are executed.
 In the context of Tekton pipelines, a workspace is a directory within the container where tasks and pipelines run.
 
+## Basic Tekton commands:
+
+#### Get all TaskRuns:
+
+```
+kubectl get taskruns
+```
+
+#### Get a specific TaskRun:
+
+```
+kubectl get taskrun <taskrun-name>
+```
+
+#### Get TaskRun logs:
+
+```
+kubectl logs --selector=tekton.dev/taskRun=<taskrun-name>
+```
+
+#### Get PipelineRun logs:
+
+```
+tkn pipelinerun logs <pipeline-run-name> -f -n <namespace>
+```
+
 ## Basic Tekton Examples:
 
 `NB!`
