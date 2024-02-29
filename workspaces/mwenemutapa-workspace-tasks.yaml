@@ -9,7 +9,7 @@ spec:
     - name: mutota-orders
       image: busybox:stable
       script: |
-        #!/bin/bash
+        #!/bin/sh
         echo "Greetings from the Great Alpha Nyatsimba Mutota!" > $(workspaces.mwenemutapa.path)/dzimbagwe.txt
 
 ---
@@ -24,7 +24,7 @@ spec:
     - name: dombo-orders
       image: busybox:stable
       script: |
-        #!/bin/bash
+        #!/bin/sh
         echo "This is a greeting from our Alpha:"
         cat $(workspaces.mwenemutapa.path)/dzimbagwe.txt
         echo "Changamire Dombo shall master, preserve and protect!"

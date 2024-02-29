@@ -9,7 +9,7 @@ spec:
     - name: mtetwa-orders
       image: busybox:stable
       script: |
-        #!/bin/bash
+        #!/bin/sh
         echo "Greetings from the Great Unifier Godongwane!" > $(workspaces.nguni.path)/dingiswayo.txt
 
 ---
@@ -24,7 +24,7 @@ spec:
     - name: zulu-orders
       image: busybox:stable
       script: |
-        #!/bin/bash
+       #!/bin/sh
         echo "This is a greeting from our Alpha:"
         cat $(workspaces.nguni.path)/dingiswayo.txt
         echo "Sigidi shall master, preserve and protect!"
