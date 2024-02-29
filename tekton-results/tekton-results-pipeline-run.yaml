@@ -6,7 +6,7 @@ spec:
   pipelineRef:
     name: arithmetic-results-pipeline
   params:
-    - name: x
+    - name: value1
       value: 3
-    - name: y
+    - name: value2
       value: 7

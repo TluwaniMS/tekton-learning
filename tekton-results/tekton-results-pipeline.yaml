@@ -4,28 +4,26 @@ metadata:
   name: arithmetic-results-pipeline
 spec:
   params:
-    - name: x
-      type: number
-    - name: y
-      type: number
+    - name: value1
+    - name: value2
   tasks:
     - name: arithmetic-calculator
       taskRef:
         name: arithmetic-result-calculator
       params:
-        - name: x
-          value: $(params.x)
-        - name: y
-          value: $(params.y)
+        - name: value1
+          value: $(params.value1)
+        - name: value2
+          value: $(params.value2)
     - name: arithmetic-answer-echoer
       taskRef:
         name: arithmetic-result-printer
       params:
         - name: arithmetic-result
           value: $(tasks.arithmetic-calculator.results.summed-value)
-        - name: x
-          value: $(params.x)
-        - name: y
-          value: $(params.y)
+        - name: value1
+          value: $(params.value1)
+        - name: value2
+          value: $(params.value2)
       runAfter:
         - arithmetic-calculator

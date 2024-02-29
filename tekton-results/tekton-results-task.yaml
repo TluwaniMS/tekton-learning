@@ -4,21 +4,21 @@ metadata:
   name: arithmetic-result-calculator
 spec:
   params:
-    - name: x
+    - name: value1
       description: 'The first number to be summed.'
-    - name: y
+    - name: value2
       description: 'The second number to be summed.'
   results:
     - name: summed-value
-      description: 'The summed value of x and y.'
+      description: 'The summed value of value1 and value2.'
   steps:
     - name: calculate-result
       image: busybox:stable
       script: |
         #!/bin/sh
-        result = $(( $(parameters.x) + $(parameters.y) ))
+        result=$(( $(params.value1) + $(params.value2) ))
         echo -n $result > $(results.summed-value.path)
-        echo "We are done calculating the sum of $x and $y"
+        echo "We are done calculating the sum of $(params.value1) and $(params.value2)"
 
 ---
 apiVersion: tekton.dev/v1beta1
@@ -28,13 +28,13 @@ metadata:
 spec:
   params:
     - name: arithmetic-result
-    - name: x
+    - name: value1
       description: 'The first number that was summed.'
-    - name: y
+    - name: value2
       description: 'The second number that was summed.'
   steps:
     - name: print-result
       image: busybox:stable
       script: |
         #!/bin/sh
-        echo "The sum of $(parameters.x) and $(parameters.y) is $(parameters.arithmetic-result)!"
+        echo "The sum of $(params.value1) and $(params.value2) is $(params.arithmetic-result) !"

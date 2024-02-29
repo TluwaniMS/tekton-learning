@@ -8,17 +8,29 @@ spec:
     - name: nguni
   tasks:
     - name: mutota-executor
+      workspaces:
+        - name: mwenemutapa
+          workspace: mwenemutapa
       taskRef:
         name: mutota-reign
     - name: mtetwa-executor
+      workspaces:
+        - name: nguni
+          workspace: nguni
       taskRef:
         name: mtetwa-reign
     - name: dombo-executor
+      workspaces:
+        - name: mwenemutapa
+          workspace: mwenemutapa
       taskRef:
         name: dombo-reign
       runAfter:
         - mutota-executor
     - name: zulu-executor
+      workspaces:
+        - name: nguni
+          workspace: nguni
       taskRef:
         name: zulu-reign
       runAfter:
