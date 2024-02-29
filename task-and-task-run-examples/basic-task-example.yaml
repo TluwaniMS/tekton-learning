@@ -15,5 +15,5 @@ spec:
       image: alpine
       script: |
         #!/bin/sh
-        echo "Greeting $(parameters.name), from the Basic Task!!!"
-        echo "$(parameters.territory) is yours to conquer!"
+        echo "Greeting $(params.greeters-name), from the Basic Task!!!"
+        echo "$(params.territory) is yours to conquer!"

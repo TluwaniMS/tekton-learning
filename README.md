@@ -64,6 +64,11 @@ Please ensure that you have a [minikube instance installed](https://minikube.sig
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 ```
 
+#### Monitor the Installation:
+
+```
+kubectl get pods --namespace tekton-pipelines --watch
+```
 
 ## Basic task and taskRun examples:
 
