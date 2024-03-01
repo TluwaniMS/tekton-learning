@@ -7,6 +7,19 @@ spec:
     name: dynastic-pipeline
   workspaces:
     - name: mwenemutapa
-      emptyDir: {}
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 500Mi
+
     - name: nguni
-      emptyDir: {}
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 500Mi
