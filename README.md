@@ -103,3 +103,15 @@ kubectl get pods --namespace tekton-pipelines --watch
 # Tekton Triggers
 
 A Tekton Trigger is a mechanism used in Tekton Pipelines, which is a Kubernetes-native continuous integration and delivery (CI/CD) framework. Tekton Triggers allow you to automate the execution of Tekton PipelineRuns based on events that occur within the Kubernetes cluster or external systems.
+
+* ### EventListeners:
+
+A Tekton EventListener is a component of the Tekton Triggers system within the Tekton Pipelines framework. It serves as the entry point for receiving external events and triggering the execution of Tekton PipelineRuns or other actions based on those events.
+
+* ### TriggerTemplate:
+
+A TriggerTemplate serves as a blueprint for defining the resource you wish to instantiate or execute, like a TaskRun or PipelineRun, triggered by your EventListener upon detecting an event.
+
+* ### TriggerBinding:
+
+A TriggerBinding, employed in the Tekton Triggers framework as a Kubernetes Custom Resource, delineates the organization of incoming event data and specifies the methodology for retrieving pertinent details from it. Essentially, it enables the extraction of specific fields from an event payload and links them to designated parameters, subsequently facilitating their utilization within a TriggerTemplate.
