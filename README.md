@@ -99,3 +99,7 @@ kubectl get pods --namespace tekton-pipelines --watch
 ```
 ./tekton-results/tekton-results-example-running-script.sh
 ```
+
+# Tekton Triggers
+
+A Tekton Trigger is a mechanism used in Tekton Pipelines, which is a Kubernetes-native continuous integration and delivery (CI/CD) framework. Tekton Triggers allow you to automate the execution of Tekton PipelineRuns based on events that occur within the Kubernetes cluster or external systems.
