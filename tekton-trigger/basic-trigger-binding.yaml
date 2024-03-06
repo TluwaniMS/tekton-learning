@@ -1,0 +1,10 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: event-greeter-binding
+spec:
+  params:
+    - name: username-1
+      value: $(body.username-1)
+    - name: username-2
+      value: $(body.username-2)
