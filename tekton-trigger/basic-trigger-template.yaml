@@ -1,0 +1,23 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: event-greeter-template
+spec:
+  params:
+    - name: username-1
+      type: string
+    - name: username-2
+      type: string
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: event-greeter-run-
+    spec:
+      pipelineRef:
+        name: event-greeter-pipeline
+      params:
+      - name: username-1
+        value: $(tt.params.username-1)
+      - name: username-2
+        value: $(tt.params.username-2)
