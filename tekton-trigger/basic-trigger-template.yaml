@@ -5,9 +5,7 @@ metadata:
 spec:
   params:
     - name: username-1
-      type: string
     - name: username-2
-      type: string
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun

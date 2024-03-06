@@ -115,3 +115,41 @@ A TriggerTemplate serves as a blueprint for defining the resource you wish to in
 * ### TriggerBinding:
 
 A TriggerBinding, employed in the Tekton Triggers framework as a Kubernetes Custom Resource, delineates the organization of incoming event data and specifies the methodology for retrieving pertinent details from it. Essentially, it enables the extraction of specific fields from an event payload and links them to designated parameters, subsequently facilitating their utilization within a TriggerTemplate.
+
+## Basic Tekton Trigger Examples:
+
+#### Install Tekton Triggers:
+
+```
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
+```
+
+```
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/interceptors.yaml
+```
+
+## Basic Tekton Triggers Example:
+
+```
+./tekton-trigger/tekton-triggers-running-script.sh
+```
+
+## Port forwarding:
+
+```
+kubectl port-forward service/<service-listener> 8080
+```
+
+## Triggering the eventListener:
+
+```
+curl -v -H 'content-Type: application/json' -d '{"username-1": "Tluwani","username-2":"Lerumo"}' http://localhost:8080
+```
+
+## Checking if the trigger has been triggered, and the result:
+
+```
+tkn pipelinerun logs <pipeline-run-name> -f
+```
+
+
