@@ -31,6 +31,17 @@ spec:
   steps:
     - name: pre-build-scripts
       image: node
+      env:
+        - name: EXISTING_USER_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: repo-env-variables
+              key: existingUserToken
+        - name: NON_EXISTANT_USER_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: repo-env-variables
+              key: nonExistantUserToken
       args: ['$(params.pre-build-scripts[*])']
       script: |
         #!/bin/sh
