@@ -1,0 +1,16 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: event-git-trigger-template
+spec:
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: git-trigger-run-
+    spec:
+      pipelineRef:
+        name: git-trigger-pipeline
+      params:
+      - name: gitrepo
+        default: 'https://github.com/TluwaniMS/graphql-end-point-testing.git'
