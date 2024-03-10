@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: git-trigger-pipeline
+spec:
+  workspaces:
+    - name: git-trigger-home
+  tasks:
+    - name: mutota-executor
+      workspaces:
+        - name: git-trigger-home
+          workspace: git-trigger-home
+      taskRef:
+        name: ""
