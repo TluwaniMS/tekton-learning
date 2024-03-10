@@ -12,3 +12,11 @@ spec:
           workspace: git-trigger-home
       taskRef:
         name: git-repo-cloning
+    - name: repository-pre-build-script-executor
+      workspaces:
+        - name: git-trigger-home
+          workspace: git-trigger-home
+      taskRef:
+        name: pre-build-script-tasks
+      runAfter:
+        - git-repo-cloning-executor
