@@ -10,10 +10,9 @@ spec:
   steps:
     - name: loop-array-commands
       image: alpine
+      args: ["$(params.commands[*])"]
       script: |
         #!/bin/sh
-        for cmd in "${$(params.commands)[@]}"; do
-          echo "Executing command: $cmd"
-          # Run the command
+        for cmd in "$@"; do
           eval "$cmd"
         done
