@@ -16,6 +16,12 @@ spec:
       workspaces:
         - name: git-trigger-home
           workspace: git-trigger-home
+      params:
+        - name: pre-build-scripts
+          value:
+            - npm install
+            - npm run test:unit
+            - npm run test:integration
       taskRef:
         name: pre-build-script-tasks
       runAfter:
