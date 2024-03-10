@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: command-looper-task
+spec:
+  params:
+    - name: commands
+      description: 'The commands to be looped.'
+      type: array
+  steps:
+    - name: loop-array-commands
+      image: alpine
+      script: |
+        #!/bin/sh

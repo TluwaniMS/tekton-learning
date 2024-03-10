@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: command-looper-task-run
+spec:
+  taskRef:
+    name: command-looper-task
+  params:
+    - name: loop-array-commands
+      value:
+        - echo "This is the first command echoed from the looper!"
+        - echo "Mystery message from the looper!!!" > message.txt
+        - cat message.txt
