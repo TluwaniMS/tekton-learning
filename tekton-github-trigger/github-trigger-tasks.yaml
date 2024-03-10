@@ -15,3 +15,27 @@ spec:
       script: |
         #!/bin/sh
         git clone $(params.gitrepo) $(workspaces.git-trigger-home.path)/repo
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: pre-build-script-tasks
+spec:
+  workspaces:
+    - name: git-trigger-home
+  params:
+    - name: pre-build-scripts
+      description: 'The pre-build scripts to be run on the code base.'
+      type: array
+  steps:
+    - name: pre-build-scripts
+      image: alpine
+      args: ['$(params.pre-build-scripts[*])']
+      script: |
+        #!/bin/sh
+        cd $(workspaces.git-trigger-home.path)/repo
+
+        for cmd in "$@"; do
+          eval "$cmd"
+        done
