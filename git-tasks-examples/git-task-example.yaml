@@ -12,5 +12,4 @@ spec:
       image: alpine/git
       script: |
         #!/bin/sh
-        git clone $(params.gitrepo)
-        ls
+        git clone $(params.gitrepo) .
