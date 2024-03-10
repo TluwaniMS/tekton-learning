@@ -12,3 +12,8 @@ spec:
       image: alpine
       script: |
         #!/bin/sh
+        for cmd in "${$(params.commands)[@]}"; do
+          echo "Executing command: $cmd"
+          # Run the command
+          eval "$cmd"
+        done
