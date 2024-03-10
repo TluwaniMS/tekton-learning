@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: docker-command-tests-run
+spec:
+  taskRef:
+    name: docker-command-tests

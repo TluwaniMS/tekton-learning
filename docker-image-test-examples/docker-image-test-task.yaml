@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: docker-command-tests
+spec:
+  steps:
+    - name: docker-command-step
+      image: docker
+      script: |
+        #!/bin/sh
+        docker --version
+        docker image ls
