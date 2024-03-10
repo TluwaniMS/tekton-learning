@@ -11,6 +11,15 @@ spec:
     spec:
       pipelineRef:
         name: git-trigger-pipeline
+      workspaces:
+      - name: git-trigger-home
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 500Mi
       params:
       - name: gitrepo
         default: 'https://github.com/TluwaniMS/graphql-end-point-testing.git'
