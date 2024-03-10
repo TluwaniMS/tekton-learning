@@ -6,9 +6,9 @@ spec:
   workspaces:
     - name: git-trigger-home
   tasks:
-    - name: mutota-executor
+    - name: git-repo-cloning-executor
       workspaces:
         - name: git-trigger-home
           workspace: git-trigger-home
       taskRef:
-        name: ""
+        name: git-repo-cloning
