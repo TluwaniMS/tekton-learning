@@ -30,7 +30,7 @@ spec:
       type: array
   steps:
     - name: pre-build-scripts
-      image: alpine
+      image: node
       args: ['$(params.pre-build-scripts[*])']
       script: |
         #!/bin/sh
