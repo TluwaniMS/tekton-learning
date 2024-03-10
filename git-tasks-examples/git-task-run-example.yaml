@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name:  git-clone-task-run
+spec:
+  taskRef:
+    name: git-clone-task
+  params:
+    - name: gitrepo
+      value: 'https://github.com/TluwaniMS/graphql-end-point-testing.git'
