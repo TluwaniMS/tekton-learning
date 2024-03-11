@@ -6,7 +6,15 @@ spec:
   steps:
     - name: docker-command-step
       image: docker
+      volumeMounts:
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
       script: |
         #!/bin/sh
-        docker --version
-        docker image ls
+        docker image ls >> docker.txt
+
+        cat docker.txt
+  volumes:
+    - name: docker-socket
+      hostPath:
+        path: /var/run/docker.sock
