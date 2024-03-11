@@ -50,3 +50,17 @@ spec:
       runAfter:
         - git-repo-cloning-executor
         - repository-pre-build-script-executor
+    - name: push-docker-image-executor
+      taskRef:
+        name: push-docker-image
+      params:
+        - name: docker-username
+          value: $(params.docker-username)
+        - name: docker-repo
+          value: $(params.docker-repo)
+        - name: tag
+          value: $(params.tag)
+      runAfter:
+        - git-repo-cloning-executor
+        - repository-pre-build-script-executor
+        - build-docker-image-executor
