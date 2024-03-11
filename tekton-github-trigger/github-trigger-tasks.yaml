@@ -50,3 +50,35 @@ spec:
         for cmd in "$@"; do
           eval "$cmd"
         done
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-docker-image
+spec:
+  workspaces:
+    - name: git-trigger-home
+  params:
+    - name: docker-username
+      description: The docker user name
+    - name: docker-repo
+      description: The docker repo name
+    - name: tag
+      description: The docker image tag
+  steps:
+    - name: docker-command-step
+      image: docker
+      volumeMounts:
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+      script: |
+        #!/bin/sh
+        cd $(workspaces.git-trigger-home.path)/repo
+
+        docker build -t $(params.docker-username)/$(params.docker-repo):$(params.tag) .
+
+  volumes:
+    - name: docker-socket
+      hostPath:
+        path: /var/run/docker.sock

@@ -23,3 +23,7 @@ spec:
       params:
       - name: gitrepo
         default: 'https://github.com/TluwaniMS/graphql-end-point-testing.git'
+      - name: docker-username
+        default: ''
+      - name: docker-repo
+        default: ''

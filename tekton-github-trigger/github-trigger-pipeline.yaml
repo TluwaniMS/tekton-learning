@@ -3,6 +3,14 @@ kind: Pipeline
 metadata:
   name: git-trigger-pipeline
 spec:
+  params:
+    - name: docker-username
+      type: string
+    - name: docker-repo
+      type: string
+    - name: tag
+      type: string
+      default: ''
   workspaces:
     - name: git-trigger-home
   tasks:
@@ -26,3 +34,19 @@ spec:
         name: pre-build-script-tasks
       runAfter:
         - git-repo-cloning-executor
+    - name: build-docker-image-executor
+      taskRef:
+        name: build-docker-image
+      workspaces:
+        - name: git-trigger-home
+          workspace: git-trigger-home
+      params:
+        - name: docker-username
+          value: $(params.docker-username)
+        - name: docker-repo
+          value: $(params.docker-repo)
+        - name: tag
+          value: $(params.tag)
+      runAfter:
+        - git-repo-cloning-executor
+        - repository-pre-build-script-executor
