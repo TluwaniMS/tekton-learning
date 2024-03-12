@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
-  name: github-push-trigger
+  name: github-pr-trigger
 spec:
   serviceAccountName: tekton-triggers-example-sa
   triggers:
