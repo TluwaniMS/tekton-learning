@@ -1,5 +1,5 @@
 #!/bin/bash
 
-kubectl apply -f
+kubectl apply -f ./git-tasks-examples/git-task-example.yaml
 
-kubectl apply -f
+kubectl apply -f ./git-tasks-examples/git-task-run-example.yaml

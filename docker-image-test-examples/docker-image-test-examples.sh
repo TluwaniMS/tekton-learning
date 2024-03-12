@@ -1,5 +1,6 @@
 #!/bin/bash
 
-kubectl apply -f
+kubectl apply -f ./docker-image-test-examples/docker-image-test-task.yaml
 
-kubectl apply -f
+kubectl apply -f ./docker-image-test-examples/docker-image-test-task-run.yaml
+
