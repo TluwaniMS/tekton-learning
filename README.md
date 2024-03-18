@@ -152,4 +152,10 @@ curl -v -H 'content-Type: application/json' -d '{"username-1": "Tluwani","userna
 tkn pipelinerun logs <pipeline-run-name> -f
 ```
 
+## Basic Github Triggers Example:
+
+```
+./tekton-github-trigger/tekton-github-trigger.sh
+```
+
 
