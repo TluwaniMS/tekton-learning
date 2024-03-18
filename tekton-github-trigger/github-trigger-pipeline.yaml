@@ -14,53 +14,55 @@ spec:
   workspaces:
     - name: git-trigger-home
   tasks:
-    - name: git-repo-cloning-executor
-      workspaces:
-        - name: git-trigger-home
-          workspace: git-trigger-home
-      taskRef:
-        name: git-repo-cloning
-    - name: repository-pre-build-script-executor
-      workspaces:
-        - name: git-trigger-home
-          workspace: git-trigger-home
-      params:
-        - name: pre-build-scripts
-          value:
-            - npm install
-            - npm run test:unit
-            - npm run test:integration
-      taskRef:
-        name: pre-build-script-tasks
-      runAfter:
-        - git-repo-cloning-executor
-    - name: build-docker-image-executor
-      taskRef:
-        name: build-docker-image
-      workspaces:
-        - name: git-trigger-home
-          workspace: git-trigger-home
-      params:
-        - name: docker-username
-          value: $(params.docker-username)
-        - name: docker-repo
-          value: $(params.docker-repo)
-        - name: tag
-          value: $(params.tag)
-      runAfter:
-        - git-repo-cloning-executor
-        - repository-pre-build-script-executor
-    - name: push-docker-image-executor
-      taskRef:
-        name: push-docker-image
-      params:
-        - name: docker-username
-          value: $(params.docker-username)
-        - name: docker-repo
-          value: $(params.docker-repo)
-        - name: tag
-          value: $(params.tag)
-      runAfter:
-        - git-repo-cloning-executor
-        - repository-pre-build-script-executor
-        - build-docker-image-executor
+    - name: greeter
+      taskRef: task-greeter
+    # - name: git-repo-cloning-executor
+    #   workspaces:
+    #     - name: git-trigger-home
+    #       workspace: git-trigger-home
+    #   taskRef:
+    #     name: git-repo-cloning
+    # - name: repository-pre-build-script-executor
+    #   workspaces:
+    #     - name: git-trigger-home
+    #       workspace: git-trigger-home
+    #   params:
+    #     - name: pre-build-scripts
+    #       value:
+    #         - npm install
+    #         - npm run test:unit
+    #         - npm run test:integration
+    #   taskRef:
+    #     name: pre-build-script-tasks
+    #   runAfter:
+    #     - git-repo-cloning-executor
+    # - name: build-docker-image-executor
+    #   taskRef:
+    #     name: build-docker-image
+    #   workspaces:
+    #     - name: git-trigger-home
+    #       workspace: git-trigger-home
+    #   params:
+    #     - name: docker-username
+    #       value: $(params.docker-username)
+    #     - name: docker-repo
+    #       value: $(params.docker-repo)
+    #     - name: tag
+    #       value: $(params.tag)
+    #   runAfter:
+    #     - git-repo-cloning-executor
+    #     - repository-pre-build-script-executor
+    # - name: push-docker-image-executor
+    #   taskRef:
+    #     name: push-docker-image
+    #   params:
+    #     - name: docker-username
+    #       value: $(params.docker-username)
+    #     - name: docker-repo
+    #       value: $(params.docker-repo)
+    #     - name: tag
+    #       value: $(params.tag)
+    #   runAfter:
+    #     - git-repo-cloning-executor
+    #     - repository-pre-build-script-executor
+    #     - build-docker-image-executor

@@ -1,112 +1,132 @@
+# apiVersion: tekton.dev/v1beta1
+# kind: Task
+# metadata:
+#   name: git-repo-cloning
+# spec:
+#   workspaces:
+#     - name: git-trigger-home
+#   params:
+#     - name: gitrepo
+#       type: string
+#       description: 'The repo to be cloned'
+#   steps:
+#     - name: git-clone
+#       image: alpine/git
+#       script: |
+#         #!/bin/sh
+#         git clone $(params.gitrepo) $(workspaces.git-trigger-home.path)/repo
+
+# ---
+# apiVersion: tekton.dev/v1beta1
+# kind: Task
+# metadata:
+#   name: pre-build-script-tasks
+# spec:
+#   workspaces:
+#     - name: git-trigger-home
+#   params:
+#     - name: pre-build-scripts
+#       description: 'The pre-build scripts to be run on the code base.'
+#       type: array
+#   steps:
+#     - name: pre-build-scripts
+#       image: node
+#       env:
+#         - name: EXISTING_USER_TOKEN
+#           valueFrom:
+#             secretKeyRef:
+#               name: repo-env-variables
+#               key: existingUserToken
+#         - name: NON_EXISTANT_USER_TOKEN
+#           valueFrom:
+#             secretKeyRef:
+#               name: repo-env-variables
+#               key: nonExistantUserToken
+#       args: ['$(params.pre-build-scripts[*])']
+#       script: |
+#         #!/bin/sh
+#         cd $(workspaces.git-trigger-home.path)/repo
+
+#         for cmd in "$@"; do
+#           eval "$cmd"
+#         done
+
+# ---
+# apiVersion: tekton.dev/v1beta1
+# kind: Task
+# metadata:
+#   name: build-docker-image
+# spec:
+#   workspaces:
+#     - name: git-trigger-home
+#   params:
+#     - name: docker-username
+#       description: The docker user name
+#     - name: docker-repo
+#       description: The docker repo name
+#     - name: tag
+#       description: The docker image tag
+#   steps:
+#     - name: docker-command-step
+#       image: docker
+#       volumeMounts:
+#         - name: docker-socket
+#           mountPath: /var/run/docker.sock
+#       script: |
+#         #!/bin/sh
+#         cd $(workspaces.git-trigger-home.path)/repo
+
+#         docker build -t $(params.docker-username)/$(params.docker-repo):$(params.tag) .
+
+#   volumes:
+#     - name: docker-socket
+#       hostPath:
+#         path: /var/run/docker.sock
+
+# ---
+# apiVersion: tekton.dev/v1beta1
+# kind: Task
+# metadata:
+#   name: push-docker-image
+# spec:
+#   params:
+#     - name: docker-username
+#       description: The docker user name
+#     - name: docker-repo
+#       description: The docker repo name
+#     - name: tag
+#       description: The docker image tag
+#   steps:
+#     - name: docker-command-step
+#       image: docker
+#       volumeMounts:
+#         - name: docker-socket
+#           mountPath: /var/run/docker.sock
+#       script: |
+#         #!/bin/sh
+
+#         docker push $(params.docker-username)/$(params.docker-repo):$(params.tag)
+#   volumes:
+#     - name: docker-socket
+#       hostPath:
+#         path: /var/run/docker.sock
+
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: git-repo-cloning
-spec:
-  workspaces:
-    - name: git-trigger-home
-  params:
-    - name: gitrepo
-      type: string
-      description: 'The repo to be cloned'
-  steps:
-    - name: git-clone
-      image: alpine/git
-      script: |
-        #!/bin/sh
-        git clone $(params.gitrepo) $(workspaces.git-trigger-home.path)/repo
-
----
-apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: pre-build-script-tasks
-spec:
-  workspaces:
-    - name: git-trigger-home
-  params:
-    - name: pre-build-scripts
-      description: 'The pre-build scripts to be run on the code base.'
-      type: array
-  steps:
-    - name: pre-build-scripts
-      image: node
-      env:
-        - name: EXISTING_USER_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: repo-env-variables
-              key: existingUserToken
-        - name: NON_EXISTANT_USER_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: repo-env-variables
-              key: nonExistantUserToken
-      args: ['$(params.pre-build-scripts[*])']
-      script: |
-        #!/bin/sh
-        cd $(workspaces.git-trigger-home.path)/repo
-
-        for cmd in "$@"; do
-          eval "$cmd"
-        done
-
----
-apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: build-docker-image
-spec:
-  workspaces:
-    - name: git-trigger-home
-  params:
-    - name: docker-username
-      description: The docker user name
-    - name: docker-repo
-      description: The docker repo name
-    - name: tag
-      description: The docker image tag
-  steps:
-    - name: docker-command-step
-      image: docker
-      volumeMounts:
-        - name: docker-socket
-          mountPath: /var/run/docker.sock
-      script: |
-        #!/bin/sh
-        cd $(workspaces.git-trigger-home.path)/repo
-
-        docker build -t $(params.docker-username)/$(params.docker-repo):$(params.tag) .
-
-  volumes:
-    - name: docker-socket
-      hostPath:
-        path: /var/run/docker.sock
-
----
-apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: push-docker-image
+  name: task-greeter
 spec:
   params:
-    - name: docker-username
-      description: The docker user name
-    - name: docker-repo
-      description: The docker repo name
-    - name: tag
-      description: The docker image tag
+    - name: greeters-name
+      description: 'The name of the user triggering the greeting.'
+      default: 'Changamire'
+    - name: territory
+      description: 'The territory to be conquered by the greeter.'
+      default: 'The world'
   steps:
-    - name: docker-command-step
-      image: docker
-      volumeMounts:
-        - name: docker-socket
-          mountPath: /var/run/docker.sock
+    - name: greet-the-world
+      image: alpine
       script: |
         #!/bin/sh
-
-        docker push $(params.docker-username)/$(params.docker-repo):$(params.tag)
-  volumes:
-    - name: docker-socket
-      hostPath:
-        path: /var/run/docker.sock
+        echo "Greeting $(params.greeters-name), from the Basic Task!!!"
+        echo "$(params.territory) is yours to conquer!"
